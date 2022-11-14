@@ -1,5 +1,10 @@
 *pyc
-output/
+
+**.pth
+**.json
+**merges.txt
+**.bin
+
 pretrain/
 data/
 .vscode/
