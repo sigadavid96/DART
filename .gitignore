@@ -2,6 +2,7 @@
 
 **.pth
 **.json
+!**results.json
 **merges.txt
 **.bin
 
