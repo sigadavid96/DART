@@ -17,6 +17,7 @@ This script can be used to search the best hyper parameters for training.
 import os
 import json
 import logging
+import torch
 import statistics
 from argparse import ArgumentParser
 from collections import defaultdict
@@ -44,7 +45,7 @@ def main():
     run_parser = ArgumentParser()
     run_parser.add_argument("--encoder",
                             choices=['manual', 'lstm', 'inner', 'inner2'],
-                            default='manual')
+                            default='inner')
     run_parser.add_argument("--task", default='all')
     run_parser.add_argument("--num_splits", type=int, default=-1)
     run_parser.add_argument("--repeat", type=int, default=3)
@@ -53,7 +54,7 @@ def main():
     run_parser.add_argument("--output_dir_suffix", "-o", type=str, default='')
 
     run_args = run_parser.parse_args()
-
+    # seed_list = [13, 42, 100]
     seed_list = [13, 21, 42, 87, 100]
     single_tasks = ['SST-2', 'sst-5', 'mr',
                     'cr', 'mpqa', 'subj', 'trec', 'CoLA']
@@ -85,6 +86,9 @@ def main():
                        '--eval_set', 'test',
                        '--overwrite_output_dir',
                        '--extra_mask_rate', str(run_args.extra_mask_rate)]
+    
+    print("torch.cuda.empty_cache() cleared!")
+    torch.cuda.empty_cache()
 
     for task in tasks:
         logger.info('=== Task: %s ===' % task)

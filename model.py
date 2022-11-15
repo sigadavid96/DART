@@ -515,8 +515,9 @@ class TransformerModelWrapper(object):
                 if 'question_idx' in batch:
                     question_ids = np.append(
                         question_ids, batch['question_idx'].detach().cpu().numpy(), axis=0)
-
+        print("PRINTING CONFIG",self.config.task_name)
         results = {
+            "config": self.config ,
             "eval_loss": np.mean(eval_losses),
             'indices': all_indices,
             'logits': preds,

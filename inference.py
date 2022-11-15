@@ -9,9 +9,9 @@ from visualize import get_top_words
 from utils import set_seed
 
 device = 'cuda'
-task_name = 'cr'
+task_name = 'SST-2'
 label_list = ['0', '1']
-prompt_type = 'none'
+prompt_type = 'inner'
 # train on selected samples
 # data_dir = 'data/select/SST-2/'
 # output_dir = 'output/select/SST-2/none/'

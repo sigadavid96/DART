@@ -18,7 +18,7 @@ import numpy as np
 from collections import defaultdict
 from sklearn.metrics import accuracy_score, f1_score, matthews_corrcoef
 from scipy.stats import pearsonr
-
+import pandas as pd
 
 def _exact_match(actuals: np.ndarray, predictions: np.ndarray, question_ids: np.ndarray):
     """Compute the exact match (EM) for a sequence of predictions and actual labels"""
@@ -61,6 +61,17 @@ def load_metrics(task_name):
 
 def evaluate_results(results, metrics):
     predictions = np.argmax(results['logits'], axis=1)
+    
+    #dsiga added code for improved example storage
+    config=results['config']
+    
+    d = {'predictions': predictions, 'labels': results['labels']} 
+
+    df=pd.DataFrame(d)
+    path="output/CoLA/inner/" + str(config.task_name)
+
+    df.to_csv(path)
+
     scores = {}
     for metric in metrics:
         if metric == 'acc':
