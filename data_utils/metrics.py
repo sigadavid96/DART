@@ -68,7 +68,7 @@ def evaluate_results(results, metrics):
     d = {'predictions': predictions, 'labels': results['labels']} 
 
     df=pd.DataFrame(d)
-    path="output/CoLA/inner/" + str(config.task_name)
+    path="output/"+str(config.task_name)+"/inner/" + str(config.task_name)+".csv"
 
     df.to_csv(path)
 
