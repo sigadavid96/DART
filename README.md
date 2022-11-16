@@ -10,15 +10,14 @@ Re - Implementation for ICLR2022 paper *[Differentiable Prompt Makes Pre-trained
 - Generated data consists of 5 random splits (13/21/42/87/100) for a task, each has 16 samples.
 
 ## **Data source creation in our environment, please use the following codes in order, inside the DART Directory post cloning our reporsitory**
-  
+  ```bash
   mkdir data
   cd data
   wget https://nlp.cs.princeton.edu/projects/lm-bff/datasets.tar
   tar xvf datasets.tar
   cd ..
   python tools/generate_k_shot_data.py
-  
--
+  ```bash
 ## How to run (remains same as the author's codes, hence below)
 - To run across each 5 splits in a task, use `run.py`:
   - In the arguments, `encoder="inner"` is the method proposed in the paper where verbalizers are other trainable tokens; `encoder="manual"` means verbalizers are selected fixed tokens; `encoder="lstm"` refers to the [P-Tuning](https://github.com/THUDM/P-tuning) method.
