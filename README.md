@@ -10,12 +10,14 @@ Re - Implementation for ICLR2022 paper *[Differentiable Prompt Makes Pre-trained
 - Generated data consists of 5 random splits (13/21/42/87/100) for a task, each has 16 samples.
 
 ## **Data source creation in our environment, please use the following codes in order, inside the DART Directory post cloning our reporsitory**
-  -mkdir data
-  -cd data
-  -wget https://nlp.cs.princeton.edu/projects/lm-bff/datasets.tar
-  -tar xvf datasets.tar
-  -cd ..
-  -python tools/generate_k_shot_data.py
+```bash
+  mkdir data
+  cd data
+  wget https://nlp.cs.princeton.edu/projects/lm-bff/datasets.tar
+  tar xvf datasets.tar
+  cd ..
+  python tools/generate_k_shot_data.py
+```
 
 ## How to run (remains same as the author's codes, hence below)
 - To run across each 5 splits in a task, use `run.py`:
@@ -43,7 +45,10 @@ optional arguments:
 - To find optimal hyper-parameters for each task-split and reproduce our result, please use `sweep.py`:
   - Please refer to documentation for [WandB](https://docs.wandb.ai/) for more details.
   - **❗NOTE: we follow [LM-BFF](https://github.com/princeton-nlp/LM-BFF) to use the corresponding automatic search results with different data split seeds.**
-```bash
+
+
 
 ## For example, To run the results for SST-2 on all splits of 16 shot data, you will have to run the below : (in DART Directory)
-  -run.py --task SST-2
+```bash 
+  run.py --task SST-2
+```
