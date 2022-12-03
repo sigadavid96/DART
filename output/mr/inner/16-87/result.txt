@@ -1,6 +1,0 @@
-eval_results:
-acc-p1: 85.7333 +- 1.1026, max = 86.9500
-acc-all-p: 85.7333 +- 1.1026, max = 86.9500
-dev_results:
-acc-p1: 0.875 +- 0.03125
-acc-all-p: 0.875 +- 0.03125
