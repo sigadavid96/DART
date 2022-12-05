@@ -621,9 +621,21 @@ class WicPVP(PVP):
 ##################################################
 
 class Sst2PVP(PVP):
+
+    # Things tried :
+    # 1. Changing to Albert-large - not great accuracy
+    # 2. Changing the verbalizer pair to terrible - great : a - fun 
+    # 3. Changing was - is 
+
+    # Things to try :
+    # 1. Albert xxl
+    # 2. Multi - label
+    # 3. Adding / Removing - regulaize the loss 
+
+
     VERBALIZER = {
-        # "0": ["terrible"],
-        # "1": ["great"]
+        "0": ["terrible"],
+        "1": ["great"]
 
         # Strange label setting
         # "0": ["cat"],
@@ -632,10 +644,10 @@ class Sst2PVP(PVP):
         # "0": ["not"],
         # "1": ["a"]
 
-        "0": ["a"],
-        "1": ["fun"]
+        # "0": ["a"],
+        # "1": ["fun"]
 
-        # Multiple label setting
+        # # Multiple label setting
         # "0": ["terrible", "bad", "awful"],
         # "1": ["great", "good", "wonderful"]
 
@@ -647,6 +659,9 @@ class Sst2PVP(PVP):
     PATTERN = ['text_a', 'It', 'was', 'self.mask', '.']
     BLOCK_FLAG = [0, 1, 1, 0, 1]
 
+    # PATTERN = ['text_a', 'It', 'feels', 'like', 'self.mask', '.']
+    # BLOCK_FLAG = [0, 1, 1, 1, 0, 1]
+
     # Only mask setting
     # PATTERN = ['text_a', 'self.mask']
     # BLOCK_FLAG = [0, 0]
@@ -655,7 +670,8 @@ class Sst2PVP(PVP):
         text_a = self.shortenable(example.text_a)
 
         # few-shot
-        string_list_a = [text_a, 'It', 'was', self.mask, '.']
+        string_list_a = [text_a, 'It','was', self.mask, '.']
+        # string_list_a = [text_a, 'It','feels','like', self.mask, '.']
         # string_list_a = [text_a, self.mask]
         string_list_b = []
         block_flag_a = self.BLOCK_FLAG

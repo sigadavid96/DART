@@ -53,7 +53,7 @@ parser.add_argument("--pet_repetitions", default=3, type=int,
 parser.add_argument("--pet_max_seq_length", default=256, type=int,
                     help="The maximum total input sequence length after tokenization for PET. Sequences longer "
                     "than this will be truncated, sequences shorter will be padded.")
-parser.add_argument("--pet_per_gpu_train_batch_size", default=4, type=int,
+parser.add_argument("--pet_per_gpu_train_batch_size", default=8, type=int,
                     help="Batch size per GPU/CPU for PET training.")
 parser.add_argument("--pet_per_gpu_eval_batch_size", default=8, type=int,
                     help="Batch size per GPU/CPU for PET evaluation.")

@@ -28,6 +28,7 @@ from tqdm import trange, tqdm
 from torch.utils.tensorboard import SummaryWriter
 from torch.utils.data import RandomSampler, DataLoader, SequentialSampler
 # from torch.cuda.amp import autocast, GradScaler
+from adamp import AdamP
 from transformers import AdamW, get_linear_schedule_with_warmup, \
     AutoModelForMaskedLM, AutoConfig, AutoTokenizer, GPT2LMHeadModel  # TODO
 
@@ -305,12 +306,12 @@ class TransformerModelWrapper(object):
                     # embedding_parameters[0]['weight_decay'] = 0.0
         optimizer_list, scheduler_list = [], []
         optimizer_list.append(
-            AdamW(optimizer_grouped_parameters, lr=1e-5, eps=adam_epsilon))
+            AdamP(optimizer_grouped_parameters, lr=1e-5, eps=adam_epsilon))
         scheduler_list.append(get_linear_schedule_with_warmup(
             optimizer_list[0], num_warmup_steps=warmup_steps, num_training_steps=t_total))
 
         if embedding_parameters:
-            optimizer_list.append(AdamW(
+            optimizer_list.append(AdamP(
                 embedding_parameters, lr=learning_rate, eps=adam_epsilon))
             scheduler_list.append(get_linear_schedule_with_warmup(
                 optimizer_list[0], num_warmup_steps=warmup_steps, num_training_steps=t_total))

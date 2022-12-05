@@ -42,6 +42,7 @@ def get_best_results(metric, output_dir, result_file='results.json'):
 
 
 def main():
+    torch.cuda.empty_cache()
     run_parser = ArgumentParser()
     run_parser.add_argument("--encoder",
                             choices=['manual', 'lstm', 'inner', 'inner2'],
@@ -109,7 +110,7 @@ def main():
             output_dir = os.path.join(task_dir, data_split)
             arguments = ['--task_name', task,
                          '--data_dir', data_dir,
-                         '--pet_per_gpu_eval_batch_size', '8',
+                         '--pet_per_gpu_eval_batch_size', '16',
                          '--pet_max_steps', '250',
                          '--pet_repetitions', str(run_args.repeat)]
 
@@ -124,8 +125,10 @@ def main():
                 output_dir = os.path.join(
                     'output', task, run_args.encoder, 'manual', data_split)
             else:
-                arguments.extend(['--model_name_or_path', 'roberta-large',
+                 arguments.extend(['--model_name_or_path', 'roberta-large',
                                   '--cache_dir', 'pretrain/roberta-large'])
+                # arguments.extend(['--model_name_or_path', 'albert-xlarge-v2',
+                #                   '--cache_dir', 'pretrain/albert-xlarge-v2'])
             arguments.extend(['--output_dir', output_dir])
 
             if task in ['MNLI', 'MNLI-mm', 'SNLI', 'RTE-glue']:
@@ -134,7 +137,7 @@ def main():
                                   '--pet_gradient_accumulation_steps', '2'])
             else:
                 arguments.extend(['--pet_max_seq_length', '128',
-                                  '--pet_per_gpu_train_batch_size', '16',
+                                  '--pet_per_gpu_train_batch_size', '8',
                                   '--pet_gradient_accumulation_steps', '1'])
 
             # Set prompt encoder type
