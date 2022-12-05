@@ -1,11 +1,23 @@
+# *pyc
+
+# # **.pth
+# # **.json
+# # !**results.json
+# # **merges.txt
+# # **.bin
+# # **.1670219734.ip-172-31-90-97.49245.0
+# output/
+# pretrain/
+# data/
+# .vscode/
+# *.out
+# wandb/
+# visual/
+# word*.json
+# *DS_Store
+
 *pyc
-
-**.pth
-**.json
-!**results.json
-**merges.txt
-**.bin
-
+output/
 pretrain/
 data/
 .vscode/
@@ -14,3 +26,5 @@ wandb/
 visual/
 word*.json
 *DS_Store
+*.ipynb
+.ipynb_checkpoints/
