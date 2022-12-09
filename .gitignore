@@ -5,7 +5,7 @@
 !**results.json
 **merges.txt
 **.bin
-
+output/
 pretrain/
 data/
 .vscode/
