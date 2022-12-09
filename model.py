@@ -581,7 +581,8 @@ class TransformerModelWrapper(object):
         # lambda1 = 1.1,lambda2 = 0.9 : overall regularization
         # lambda1 = 1.7,lambda2 = 0.9 : overall regularization
         
-
+        lambda1 = 0.9
+        lambda2 = 1.2 
         loss_final=lambda1*loss1+lambda2*loss2
         
         return loss_final
