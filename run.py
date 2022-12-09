@@ -124,8 +124,10 @@ def main():
                 output_dir = os.path.join(
                     'output', task, run_args.encoder, 'manual', data_split)
             else:
-                arguments.extend(['--model_name_or_path', 'roberta-large',
-                                  '--cache_dir', 'pretrain/roberta-large'])
+                arguments.extend(['--model_name_or_path', 'siebert/sentiment-roberta-large-english',
+                                  '--cache_dir', 'pretrain/siebert/sentiment-roberta-large-english'])
+                # arguments.extend(['--model_name_or_path', 'roberta-large',
+                #                   '--cache_dir', 'pretrain/roberta-large'])
             arguments.extend(['--output_dir', output_dir])
 
             if task in ['MNLI', 'MNLI-mm', 'SNLI', 'RTE-glue']:

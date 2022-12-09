@@ -545,14 +545,46 @@ class TransformerModelWrapper(object):
         loss = nn.CrossEntropyLoss()(
             prediction_scores.view(-1, len(self.config.label_list)), labels.view(-1))
 
+        loss1=loss
+        loss2=0
         # Add loss of extra masked tokens
         if 'extra_mlm_labels' in labeled_batch:
             extra_mlm_labels = labeled_batch['extra_mlm_labels']
             extra_loss = nn.CrossEntropyLoss()(outputs[0].view(-1, self.tokenizer.vocab_size),
                                                extra_mlm_labels.view(-1))
-            loss += extra_loss
+            loss2 += extra_loss
+        
+        # add to report
+        # new optimizer
+        # new loss
+        # new custom berts
+        # show plots that better seperation is better
 
-        return loss
+        # originally lambda1=1 and lambda2=1
+        # we think fluency is of secondary importance and we wish for more discriminative classification
+        
+        # depending on adamp vs adamw
+
+        #OG DART
+        # testing thew impact of labda 2 on a regularized lambda 1
+        # lambda1 = 0.9,lambda2 = 0.7 : overall regularization
+        # lambda1 = 0.9,lambda2 = 1.2 : overall regularization
+        # testing the impact of labda 1 on a regularized lambda 2
+        # lambda1 = 1.1,lambda2 = 0.9 : overall regularization
+        # lambda1 = 1.7,lambda2 = 0.9 : overall regularization
+
+        #Roberta siebert
+        # testing thew impact of labda 2 on a regularized lambda 1
+        # lambda1 = 0.9,lambda2 = 0.7 : overall regularization
+        # lambda1 = 0.9,lambda2 = 1.2 : overall regularization
+        # testing the impact of labda 1 on a regularized lambda 2
+        # lambda1 = 1.1,lambda2 = 0.9 : overall regularization
+        # lambda1 = 1.7,lambda2 = 0.9 : overall regularization
+        
+
+        loss_final=lambda1*loss1+lambda2*loss2
+        
+        return loss_final
 
     def mlm_eval_step(self, batch: Dict[str, torch.Tensor]) -> torch.Tensor:
         """Perform a MLM evaluation step."""
