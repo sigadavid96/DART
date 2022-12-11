@@ -1,4 +1,4 @@
-# Re-Implementation of DART [Assignment 3 11711] by dsiga, rdharani, skandi
+# Improvement of DART [Assignment 4 11711] by dsiga, rdharani, skandi
 # Codes are forked and inspired from DART GitHub 
 Re - Implementation for ICLR2022 paper *[Differentiable Prompt Makes Pre-trained Language Models Better Few-shot Learners](https://arxiv.org/pdf/2108.13161.pdf)*.
 ## The following Environment is required to run the codes
