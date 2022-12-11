@@ -50,5 +50,5 @@ optional arguments:
 
 ## For example, To run the results for SST-2 on all splits of 16 shot data, you will have to run the below : (in DART Directory)
 ```bash 
-  run.py --task SST-2
+python3  run.py --task SST-2
 ```
